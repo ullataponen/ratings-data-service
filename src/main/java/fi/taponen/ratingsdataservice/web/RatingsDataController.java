@@ -14,20 +14,24 @@ import fi.taponen.ratingsdataservice.domain.UserRating;
 @RequestMapping("/ratingsdata")
 public class RatingsDataController {
 	
-	@RequestMapping("/{productId}")
-	public Rating getRating(@PathVariable("productId") String productId) {
+	@RequestMapping("/products/{productId}")
+	public Rating getRating(@PathVariable("productId") long productId) {
 		return new Rating(productId, 4);
 	}
 	
-	@RequestMapping("users/{userId}")
+	@RequestMapping("/users/{userId}")
 	public UserRating getUserRating(@PathVariable("userId") String userId) {
-		List<Rating> ratings =  Arrays.asList(
-			new Rating("1234", 2),
-			new Rating("4321", 5)
+		
+		UserRating userRating = new UserRating();
+		userRating.initData(userId);
+		return userRating;
+	/*	List<Rating> ratings =  Arrays.asList(
+			new Rating("1", 2),
+			new Rating("2", 5)
 		);
 		UserRating userRating = new UserRating();
 		userRating.setUserRating(ratings);
 		
-		return userRating;
+		return userRating;*/
 	}
 }
