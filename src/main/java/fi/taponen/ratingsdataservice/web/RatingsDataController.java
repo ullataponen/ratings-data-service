@@ -3,6 +3,7 @@ package fi.taponen.ratingsdataservice.web;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fi.taponen.ratingsdataservice.domain.Rating;
 import fi.taponen.ratingsdataservice.domain.UserRating;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/ratingsdata")
 public class RatingsDataController {
@@ -25,13 +27,5 @@ public class RatingsDataController {
 		UserRating userRating = new UserRating();
 		userRating.initData(userId);
 		return userRating;
-	/*	List<Rating> ratings =  Arrays.asList(
-			new Rating("1", 2),
-			new Rating("2", 5)
-		);
-		UserRating userRating = new UserRating();
-		userRating.setUserRating(ratings);
-		
-		return userRating;*/
 	}
 }
